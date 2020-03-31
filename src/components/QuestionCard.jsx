@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
@@ -7,7 +8,10 @@ export default function QuestionCard({ title, answers }) {
     <Form.Check
       type="radio"
       label={` ${5 - index}점 - ${text}`}
-      key={`questionCard${title}`}
+      name={`${title}-answer-form`}
+      key={`${title}-questionCard-${index}`}
+      value={`${5 - index}`}
+      onChange={() => {}}
     />
   );
   return (
@@ -24,3 +28,7 @@ export default function QuestionCard({ title, answers }) {
     </Card>
   );
 }
+QuestionCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

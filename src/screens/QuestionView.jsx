@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -7,11 +7,7 @@ import Button from 'react-bootstrap/Button';
 import QuestionCard from '../components/QuestionCard';
 import Ask from '../components/Ask';
 
-export default function Question() {
-  const history = useHistory();
-  const handleOnClick = () => {
-    history.push('/result');
-  };
+export default function QuestionView({ onClick }) {
   return (
     <Container>
       <Card
@@ -25,13 +21,17 @@ export default function Question() {
       {Ask.questions.map((elem) => (
         <QuestionCard key={`ask${elem.title}`} title={elem.title} answers={elem.answers} />))}
       <Button
-        variant="primary"
+        variant="info"
         block
         style={{ marginTop: '2rem' }}
-        onClick={handleOnClick}
+        onClick={onClick}
       >
         제출!
       </Button>
     </Container>
   );
 }
+
+QuestionView.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

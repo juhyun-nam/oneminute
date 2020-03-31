@@ -1,17 +1,13 @@
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import { useHistory } from 'react-router-dom';
 
-export default function Home() {
-  const history = useHistory();
-  const handleOnClick = () => {
-    history.push('/question');
-  };
+export default function HomeView({ onClick }) {
   return (
     <>
       <Container>
-        <Jumbotron onClick={handleOnClick} style={{ cursor: 'pointer' }}>
+        <Jumbotron onClick={onClick} style={{ cursor: 'pointer' }}>
           <h1>내 직장 점수 매기기</h1>
           <p>
             내가 생각하는 내 직장 점수를 매겨보고
@@ -25,3 +21,7 @@ export default function Home() {
     </>
   );
 }
+
+HomeView.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

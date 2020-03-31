@@ -10,9 +10,14 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "",
-    "dev": "webpack"
+    "dev": "webpack",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-backgrounds": "^5.3.17",
+    "@storybook/addon-viewport": "^5.3.17",
+    "@storybook/react": "^5.3.17",
     "bootstrap": "^4.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
