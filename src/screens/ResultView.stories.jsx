@@ -4,10 +4,10 @@ import { action } from '@storybook/addon-actions';
 import ResultView from './ResultView';
 
 export default {
-  title: 'ResultView',
+  title: 'Screen|ResultView',
   component: ResultView,
 };
 
-export const defaultView = () => (
+export const Default = () => (
   <ResultView onClick={action('onClick', 'onMouseOver')} />
 );

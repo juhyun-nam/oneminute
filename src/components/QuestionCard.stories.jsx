@@ -7,6 +7,6 @@ export default {
   component: QuestionCard,
 };
 
-export const defaultView = () => (
+export const Default = () => (
   <QuestionCard title="title" answers={['ans1', 'ans2']} />
 );

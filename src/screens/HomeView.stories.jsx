@@ -4,10 +4,10 @@ import { action } from '@storybook/addon-actions';
 import HomeView from './HomeView';
 
 export default {
-  title: 'HomeView',
+  title: 'Screen|HomeView',
   component: HomeView,
 };
 
-export const defaultView = () => (
+export const Default = () => (
   <HomeView onClick={action('onClick', 'onMouseOver')} />
 );

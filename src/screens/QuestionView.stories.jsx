@@ -4,10 +4,10 @@ import { action } from '@storybook/addon-actions';
 import QuestionView from './QuestionView';
 
 export default {
-  title: 'QuestionView',
+  title: 'Screen|QuestionView',
   component: QuestionView,
 };
 
-export const defaultView = () => (
+export const Default = () => (
   <QuestionView onClick={action('onClick', 'onMouseOver')} />
 );
