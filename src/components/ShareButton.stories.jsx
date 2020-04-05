@@ -9,5 +9,5 @@ export default {
 };
 
 export const Default = () => (
-  <ShareButton onclick={action('onClick', 'onMouseOver')} />
+  <ShareButton onClick={action('onClick', 'onMouseOver')} />
 );

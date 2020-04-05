@@ -1,6 +1,13 @@
 export const SELECT = 'SELECT';
+export const RESULT = 'RESULT';
 
-export const selectionList = (list) => ({
+export const selection = (key, value) => ({
   type: SELECT,
-  list,
+  key,
+  value,
+});
+
+export const result = (statistics) => ({
+  type: RESULT,
+  statistics,
 });

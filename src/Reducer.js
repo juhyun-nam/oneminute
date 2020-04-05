@@ -1,15 +1,26 @@
 import { combineReducers } from 'redux';
-import { SELECT } from './Actions';
+import { SELECT, RESULT } from './Actions';
 
-function selectionListReducer(selectionList = [], action) {
+function selectionReducer(selections = {}, action) {
+  window.console.log(action);
   switch (action.type) {
     case SELECT:
-      return action.list;
+      return { ...selections, [action.key]: action.value };
     default:
-      return selectionList;
+      return selections;
+  }
+}
+
+function statisticsReducer(statistics = {}, action) {
+  switch (action.type) {
+    case RESULT:
+      return action.statistics;
+    default:
+      return statistics;
   }
 }
 
 export default combineReducers({
-  selectionList: selectionListReducer,
+  selections: selectionReducer,
+  statistics: statisticsReducer,
 });

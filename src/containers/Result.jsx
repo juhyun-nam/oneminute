@@ -1,10 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useStore } from 'react-redux';
 import ResultView from '../screens/ResultView';
 
-export default function Home() {
-  const history = useHistory();
+export default function Result() {
+  const { selections, statistics } = useStore().getState();
   return (
-    <ResultView onClick={() => history.push('/')} />
+    <ResultView userSelection={selections} statistics={statistics} />
   );
 }

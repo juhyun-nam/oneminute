@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
-export default function QuestionCard({ title, answers }) {
+export default function QuestionCard({ title, answers, changeDispatch }) {
+  const onChange = (val) => {
+    changeDispatch(title, Number(val));
+  };
   const renderForm = (text, index) => (
-    <Form.Check
-      type="radio"
-      label={` ${5 - index}점 - ${text}`}
-      name={`${title}-answer-form`}
+    <ToggleButton
+      block
+      size="lg"
+      className="text-left"
+      variant="secondary"
       key={`${title}-questionCard-${index}`}
-      value={`${5 - index}`}
-      onChange={() => {}}
-    />
+      value={5 - index}
+    >
+      {` ${5 - index}점 - ${text}`}
+    </ToggleButton>
   );
   return (
     <Card
@@ -23,7 +29,14 @@ export default function QuestionCard({ title, answers }) {
       <Card.Header>{title}</Card.Header>
       <Card.Img src="" />
       <Card.Body>
-        {answers.map(renderForm)}
+        <ToggleButtonGroup
+          className="d-block"
+          name={`${title}-answer-form`}
+          type="radio"
+          onChange={onChange}
+        >
+          {answers.map(renderForm)}
+        </ToggleButtonGroup>
       </Card.Body>
     </Card>
   );
@@ -31,4 +44,5 @@ export default function QuestionCard({ title, answers }) {
 QuestionCard.propTypes = {
   title: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  changeDispatch: PropTypes.func.isRequired,
 };

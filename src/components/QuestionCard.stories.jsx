@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 
 import QuestionCard from './QuestionCard';
 
@@ -8,5 +9,5 @@ export default {
 };
 
 export const Default = () => (
-  <QuestionCard title="title" answers={['ans1', 'ans2']} />
+  <QuestionCard title="title" answers={['ans1', 'ans2']} changeDispatch={action('onClick')} />
 );

@@ -1,29 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 
 import QuestionHeading from '../components/QuestionHeading';
-import SubmitButton from '../components/SubmitButton';
-import QuestionCard from '../components/QuestionCard';
-import Ask from '../components/Ask';
+import Button from '../components/Button';
+import QuestionList from '../containers/QuestionList';
 
-export default function QuestionView({ onClick }) {
-  const renderQuestionCard = (elem) => (
-    <QuestionCard
-      key={`ask${elem.title}`}
-      title={elem.title}
-      answers={elem.answers}
-    />
-  );
+export default function QuestionView({ questionList, onClick }) {
   return (
     <Container>
       <QuestionHeading />
-      {Ask.questions.map(renderQuestionCard)}
-      <SubmitButton onClick={onClick} />
+      <Form>
+        <QuestionList questions={questionList} />
+        <Button onClick={onClick} text="제출" variant="info" />
+      </Form>
     </Container>
   );
 }
 
 QuestionView.propTypes = {
+  questionList: PropTypes.arrayOf(PropTypes.object).isRequired,
   onClick: PropTypes.func.isRequired,
 };
