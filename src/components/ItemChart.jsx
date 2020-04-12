@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Doughnut } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
-const doughnutData = {
+const lineData = {
   labels: [
     '1점',
     '2점',
@@ -11,42 +11,43 @@ const doughnutData = {
     '5점',
   ],
   datasets: [{
+    label: 'colleague',
+    borderColor: '#FF6384',
+    backgroundColor: '#FF6384',
+    fill: false,
     data: [],
-    backgroundColor: [
-      '#FF6384',
-      '#FFCD56',
-      '#4BC0C0',
-      '#36A2EB',
-      '#9966FF',
-    ],
-    hoverBackgroundColor: [
-      '#FF6384',
-      '#FFCD56',
-      '#4BC0C0',
-      '#36A2EB',
-      '#9966FF',
-    ],
+  }, {
+    label: 'salary',
+    borderColor: '#4BC0C0',
+    backgroundColor: '#4BC0C0',
+    fill: false,
+    data: [],
+  }, {
+    label: 'job',
+    borderColor: '#36A2EB',
+    backgroundColor: '#36A2EB',
+    fill: false,
+    data: [],
+  }, {
+    label: 'career',
+    borderColor: '#9966FF',
+    backgroundColor: '#9966FF',
+    fill: false,
+    data: [],
   }],
 };
 
-export default function ItemChart({ title, subtitle, data }) {
-  const localData = { ...doughnutData };
-  localData.datasets[0].data = data;
+export default function ItemChart({ datas }) {
+  const localData = { ...lineData };
+  const ds = localData.datasets;
+  [ds[0].data, ds[1].data, ds[2].data, ds[3].data] = [...datas];
   return (
     <div>
-      <h2>
-        {title}
-      </h2>
-      <h4>
-        {subtitle}
-      </h4>
-      <Doughnut data={localData} />
+      <Line data={localData} />
     </div>
   );
 }
 
 ItemChart.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  datas: PropTypes.arrayOf(PropTypes.array).isRequired,
 };

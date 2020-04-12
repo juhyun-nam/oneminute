@@ -4,43 +4,37 @@ import { useStore, connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoadingOverlay from 'react-loading-overlay';
 
-import QuestionView from '../screens/QuestionView';
 import { result } from '../Actions';
+import base from '../rebase';
+import QuestionView from '../screens/QuestionView';
 import Ask from '../components/Ask';
 
-import Statistics from '../statistics';
-
 function Question({ resultDispatch }) {
-  const store = useStore();
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const store = useStore();
   const onClick = () => {
     const { selections } = store.getState();
     const isValid = Object.keys(selections).length === 5;
     if (!isValid) {
       window.console.log('check answers');
-    } else {
-      setIsLoading(true);
-      window.scrollTo(0, 0);
-      setTimeout(() => {
-        window.console.log(selections);
-        window.console.log(Statistics);
-        resultDispatch(Statistics);
-        history.push('/result');
-      }, 1500);
+      return;
     }
+    setIsLoading(true);
+    base.get('employ', {})
+      .then((data) => data[0])
+      .catch((err) => { window.console.log(err); })
+      .then((res) => {
+        window.console.log(res);
+        resultDispatch(res);
+        history.push('/result');
+      });
   };
   return (
     <LoadingOverlay
       active={isLoading}
       spinner
       text="통계 데이터를 가져오는 중..."
-      styles={{
-        overlay: (base) => ({
-          ...base,
-          height: '100%',
-        }),
-      }}
     >
       <QuestionView
         questionList={Ask.questions}
@@ -49,7 +43,6 @@ function Question({ resultDispatch }) {
     </LoadingOverlay>
   );
 }
-
 Question.propTypes = {
   resultDispatch: PropTypes.func.isRequired,
 };

@@ -4,9 +4,10 @@ import Card from 'react-bootstrap/Card';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
-export default function QuestionCard({ title, answers, changeDispatch }) {
+export default function QuestionCard({ title, answers, dbKey, changeDispatch,
+}) {
   const onChange = (val) => {
-    changeDispatch(title, Number(val));
+    changeDispatch(dbKey, Number(val));
   };
   const renderForm = (text, index) => (
     <ToggleButton
@@ -44,5 +45,6 @@ export default function QuestionCard({ title, answers, changeDispatch }) {
 QuestionCard.propTypes = {
   title: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dbKey: PropTypes.string.isRequired,
   changeDispatch: PropTypes.func.isRequired,
 };

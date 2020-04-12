@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
 
-export default function ResultHeading({ text }) {
+export default function ResultHeading({ heading, text }) {
   return (
-    <Card bg="info" className="my-4">
-      <Card.Body>
+    <div>
+      <h2>
+        {heading}
+      </h2>
+      <h3>
         {text}
-      </Card.Body>
-    </Card>
+      </h3>
+    </div>
   );
 }
 
 ResultHeading.propTypes = {
+  heading: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };

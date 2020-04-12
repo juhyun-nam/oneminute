@@ -35,7 +35,7 @@ export default function TotalChart({ title, data }) {
   lineData.datasets[0].data = data;
   return (
     <div>
-      <h2>{title}</h2>
+      <h4>{title}</h4>
       <Bar
         data={lineData}
         options={options}

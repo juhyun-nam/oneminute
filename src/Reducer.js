@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { SELECT, RESULT } from './Actions';
 
 function selectionReducer(selections = {}, action) {
-  window.console.log(action);
   switch (action.type) {
     case SELECT:
       return { ...selections, [action.key]: action.value };
