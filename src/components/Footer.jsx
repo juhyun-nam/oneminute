@@ -1,15 +1,20 @@
 import * as React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 
 export default function Footer() {
   return (
-    <Navbar
-      fixed="bottom"
-      variant="dark"
-      bg="dark"
-      className="flex-row-reverse"
-    >
-      <Navbar.Brand> juhyun-nam </Navbar.Brand>
-    </Navbar>
+    <div className="fixed-bottom mb-2">
+      <hr />
+      <Container>
+        <div className="text-center text-secondary">
+          <div className="font-weight-bold">
+            oneminute.kr
+          </div>
+          <div>
+            thenothinis@gmail.com
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 }

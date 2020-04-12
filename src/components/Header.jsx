@@ -3,8 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export default function Header() {
   return (
-    <Navbar fixed="top" bg="dark" variant="dark" className="mb-4">
-      <Navbar.Brand> 직장 점수 </Navbar.Brand>
+    <Navbar fixed="top" bg="primary" variant="dark">
+      <Navbar.Brand> oneminute.kr </Navbar.Brand>
     </Navbar>
   );
 }

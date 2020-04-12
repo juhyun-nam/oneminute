@@ -18,7 +18,7 @@ export default function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Header />
-        <Container style={{ marginTop: '80px', marginBottom: '80px' }}>
+        <Container style={{ marginTop: '80px' }}>
           <Switch>
             <Route path="/question">
               <Question />

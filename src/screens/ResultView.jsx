@@ -20,22 +20,30 @@ export default function ResultView({
   const sum = Object.values(selections).reduce((acc, cur) => acc + cur);
   return (
     <Container>
+      <br />
       <ResultHeading
-        heading={`총합은 ${sum}이고`}
-        text={`당신은 상위 ${percentage}%입니다.`}
+        heading={`당신은 상위 ${percentage}% 입니다.`}
+        text={`입력한 점수의 총합은 ${sum}점 입니다.`}
       />
-      <br />
-      <TotalChart title="전체 비율" data={totalDist} />
-      <br />
+      <hr className="my-4" />
       <h4>
-        {'당신의 선택:  '}
+        전체 분포 (%)
+      </h4>
+      <TotalChart data={totalDist} />
+      <hr className="my-4" />
+      <h4>
+        각 문항별 분포 (%)
+      </h4>
+      <ItemChart datas={[distanceDist, colleagueDist, salaryDist, jobDist, careerDist]} />
+      <div className="my-2">
+        {'당신의 선택 ( '}
         {`거리: ${selections.distance}  `}
         {`사람: ${selections.colleague}  `}
         {`돈: ${selections.salary}  `}
         {`일: ${selections.job}  `}
         {`커리어: ${selections.career}  `}
-      </h4>
-      <ItemChart datas={[distanceDist, colleagueDist, salaryDist, jobDist, careerDist]} />
+        {')'}
+      </div>
     </Container>
   );
 }
