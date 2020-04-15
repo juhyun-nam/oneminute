@@ -9,7 +9,7 @@ export default function HomeView({ onClick }) {
     <>
       <Container>
         <Jumbotron onClick={onClick} style={{ cursor: 'pointer' }}>
-          <h1>내 직장 점수 매기기</h1>
+          <h2>내 직장 점수 매기기</h2>
           <p className="lead">
             내가 생각하는 내 직장의 점수를 매겨보고,
             다른 사람들과 비교해보자.
