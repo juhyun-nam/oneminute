@@ -10,14 +10,14 @@ import ItemChart from '../components/ItemChart';
 export default function ResultView({
   percentage,
   totalDist,
-  selections,
+  selection,
   distanceDist,
   colleagueDist,
   salaryDist,
   jobDist,
   careerDist,
 }) {
-  const sum = Object.values(selections).reduce((acc, cur) => acc + cur);
+  const sum = Object.values(selection).reduce((acc, cur) => acc + cur);
   return (
     <Container>
       <br />
@@ -37,11 +37,11 @@ export default function ResultView({
       <ItemChart datas={[distanceDist, colleagueDist, salaryDist, jobDist, careerDist]} />
       <div className="my-2">
         {'당신의 선택 ( '}
-        {`거리: ${selections.distance}  `}
-        {`사람: ${selections.colleague}  `}
-        {`돈: ${selections.salary}  `}
-        {`일: ${selections.job}  `}
-        {`커리어: ${selections.career}  `}
+        {`거리: ${selection.distance}  `}
+        {`사람: ${selection.colleague}  `}
+        {`돈: ${selection.salary}  `}
+        {`일: ${selection.job}  `}
+        {`커리어: ${selection.career}  `}
         {')'}
       </div>
     </Container>
@@ -51,7 +51,7 @@ export default function ResultView({
 ResultView.propTypes = {
   percentage: PropTypes.number.isRequired,
   totalDist: PropTypes.arrayOf(PropTypes.number).isRequired,
-  selections: PropTypes.shape({
+  selection: PropTypes.shape({
     distance: PropTypes.number,
     colleague: PropTypes.number,
     job: PropTypes.number,

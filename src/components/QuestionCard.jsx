@@ -34,7 +34,7 @@ export default function QuestionCard({
       setTimeout(() => {
         onClick(val);
         setAnimate('bounceInRight');
-      }, 500);
+      }, 300);
     } else {
       onClick(val);
     }

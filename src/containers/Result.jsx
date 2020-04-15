@@ -20,9 +20,7 @@ function totalDistToGraph(totalDist, totalCount) {
     return t[i] + t[i + 1] + t[i + 2] + t[i + 3] + t[i + 4];
   });
   graphData[3] += t[20];
-  window.console.log(graphData);
   const res = graphData.map((val) => Math.round((val / totalCount) * 100));
-  window.console.log(res);
   return res.reverse();
 }
 
@@ -31,8 +29,8 @@ function singleDist(item, totalCount) {
 }
 
 export default function Result() {
-  const { selections, total } = useStore().getState();
-  const percentage = Percentage(selections, total.totalDist, total.totalCount);
+  const { selection, total } = useStore().getState();
+  const percentage = Percentage(selection, total.totalDist, total.totalCount);
   const distanceDist = singleDist(total.distance, total.totalCount);
   const colleagueDist = singleDist(total.colleague, total.totalCount);
   const salaryDist = singleDist(total.salary, total.totalCount);
@@ -43,7 +41,7 @@ export default function Result() {
     <ResultView
       percentage={percentage}
       totalDist={totalGraph}
-      selections={selections}
+      selection={selection}
       distanceDist={distanceDist}
       colleagueDist={colleagueDist}
       salaryDist={salaryDist}
