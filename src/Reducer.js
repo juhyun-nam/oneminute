@@ -1,25 +1,25 @@
 import { combineReducers } from 'redux';
 import { SELECT, RESULT } from './Actions';
 
-function selectionReducer(selections = {}, action) {
+function selectionReducer(selection = {}, action) {
   switch (action.type) {
     case SELECT:
-      return { ...selections, [action.key]: action.value };
+      return { ...selection, [action.key]: action.value };
     default:
-      return selections;
+      return selection;
   }
 }
 
-function statisticsReducer(statistics = {}, action) {
+function totalReducer(total = {}, action) {
   switch (action.type) {
     case RESULT:
-      return action.statistics;
+      return action.total;
     default:
-      return statistics;
+      return total;
   }
 }
 
 export default combineReducers({
-  selections: selectionReducer,
-  statistics: statisticsReducer,
+  selection: selectionReducer,
+  total: totalReducer,
 });

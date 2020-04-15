@@ -2,24 +2,28 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { selection } from '../Actions';
+import { selectionAction } from '../Actions';
 import QuestionCard from '../components/QuestionCard';
 
-function QuestionList({ questions, selectionDispatch }) {
-  const questionSize = 5;
-  const [questionNo, setQuestionNo] = useState(0);
-  const renderQuestionCard = (elem) => (
-    <QuestionCard
-      key={`ask${elem.title}`}
-      title={elem.title}
-      answers={elem.answers}
-      dbKey={elem.key}
-      changeDispatch={selectionDispatch}
-    />
-  );
+function QuestionList({ questions, selectionDispatch, submit }) {
+  const [selectNo, setSelectNo] = useState(0);
+  const question = questions[selectNo];
+  const onChange = (val) => {
+    selectionDispatch(question.key, Number(val));
+    if (selectNo >= 4) {
+      submit();
+    } else {
+      setSelectNo(selectNo + 1);
+    }
+  };
   return (
     <>
-      {questions.map(renderQuestionCard)}
+      <QuestionCard
+        title={`${question.title} (${selectNo + 1}/5)`}
+        answers={question.answers}
+        onClick={onChange}
+        lastQuestion={selectNo >= 4}
+      />
     </>
   );
 }
@@ -27,10 +31,11 @@ function QuestionList({ questions, selectionDispatch }) {
 QuestionList.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectionDispatch: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
-  selectionDispatch: selection,
+  selectionDispatch: selectionAction,
 };
 
 export default connect(null, mapDispatchToProps)(QuestionList);

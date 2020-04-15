@@ -4,29 +4,24 @@ import { useStore, connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoadingOverlay from 'react-loading-overlay';
 
-import { result } from '../Actions';
+import { totalAction } from '../Actions';
 import base from '../rebase';
 import QuestionView from '../screens/QuestionView';
 import Ask from '../components/Ask';
 
-function Question({ resultDispatch }) {
+function Question({ totalDispatch }) {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const store = useStore();
-  const onClick = () => {
-    const { selections } = store.getState();
-    const isValid = Object.keys(selections).length === 5;
-    if (!isValid) {
-      window.console.log('check answers');
-      return;
-    }
+  const submit = () => {
+    window.console.log(store.getState().selection);
     setIsLoading(true);
     base.get('employ', {})
       .then((data) => data[0])
       .catch((err) => { window.console.log(err); })
       .then((res) => {
         window.console.log(res);
-        resultDispatch(res);
+        totalDispatch(res);
         history.push('/result');
       });
   };
@@ -35,20 +30,26 @@ function Question({ resultDispatch }) {
       active={isLoading}
       spinner
       text="통계 데이터를 가져오는 중..."
+      styles={{
+        wrapper: {
+          width: '100%',
+          height: '100%',
+        },
+      }}
     >
       <QuestionView
         questionList={Ask.questions}
-        onClick={onClick}
+        submit={submit}
       />
     </LoadingOverlay>
   );
 }
 Question.propTypes = {
-  resultDispatch: PropTypes.func.isRequired,
+  totalDispatch: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
-  resultDispatch: result,
+  totalDispatch: totalAction,
 };
 
 export default connect(null, mapDispatchToProps)(Question);

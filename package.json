@@ -8,10 +8,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server",
     "build": "",
     "dev": "webpack --mode development",
-    "storybook": "start-storybook -p 6006"
+    "start-storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@storybook/addon-actions": "^5.3.17",

@@ -1,50 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import Button from 'react-bootstrap/Button';
 
-export default function QuestionCard({ title, answers, dbKey, changeDispatch,
-}) {
-  const onChange = (val) => {
-    changeDispatch(dbKey, Number(val));
+import '../Card.css';
+
+function Answer(title, onClick) {
+  return (text, index) => {
+    const score = 5 - index;
+    return (
+      <Button
+        key={`answer${title}-${index}`}
+        block
+        size="lg"
+        value={score}
+        className="text-left"
+        variant="primary"
+        onClick={(e) => onClick(e.target.value)}
+      >
+        {` ${score}점 - ${text}`}
+      </Button>
+    );
   };
-  const renderForm = (text, index) => (
-    <ToggleButton
-      block
-      size="lg"
-      className="text-left"
-      variant="secondary"
-      key={`${title}-questionCard-${index}`}
-      value={5 - index}
-    >
-      {` ${5 - index}점 - ${text}`}
-    </ToggleButton>
-  );
+}
+
+export default function QuestionCard({
+  title, answers, onClick, lastQuestion,
+}) {
+  const [animate, setAnimate] = useState('bounceInRight');
+  const decoratedOnClick = (val) => {
+    if (!lastQuestion) {
+      setAnimate('bounceOutLeft');
+      setTimeout(() => {
+        onClick(val);
+        setAnimate('bounceInRight');
+      }, 500);
+    } else {
+      onClick(val);
+    }
+  };
+
   return (
-    <Card
-      bg="dark"
-      text="white"
-      className="my-4"
-    >
-      <Card.Header>{title}</Card.Header>
-      <Card.Img src="" />
-      <Card.Body>
-        <ToggleButtonGroup
-          className="d-block"
-          name={`${title}-answer-form`}
-          type="radio"
-          onChange={onChange}
-        >
-          {answers.map(renderForm)}
-        </ToggleButtonGroup>
-      </Card.Body>
-    </Card>
+    <div className={`animated ${animate}`}>
+      <Card
+        border="primary"
+        bg="secondary"
+        text="white"
+        className="my-4"
+      >
+        <Card.Img src="" />
+        <Card.Body>
+          <Card.Title>
+            {title}
+          </Card.Title>
+          <hr />
+          {answers.map(Answer(title, decoratedOnClick))}
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 QuestionCard.propTypes = {
   title: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  dbKey: PropTypes.string.isRequired,
-  changeDispatch: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  lastQuestion: PropTypes.bool.isRequired,
 };

@@ -31,15 +31,14 @@ function singleDist(item, totalCount) {
 }
 
 export default function Result() {
-  const { selections, statistics } = useStore().getState();
-  const st = statistics;
-  const percentage = Percentage(selections, statistics.totalDist, statistics.totalCount);
-  const distanceDist = singleDist(st.distance, st.totalCount);
-  const colleagueDist = singleDist(st.colleague, st.totalCount);
-  const salaryDist = singleDist(st.salary, st.totalCount);
-  const jobDist = singleDist(st.job, st.totalCount);
-  const careerDist = singleDist(st.career, st.totalCount);
-  const totalGraph = totalDistToGraph(st.totalDist, st.totalCount);
+  const { selections, total } = useStore().getState();
+  const percentage = Percentage(selections, total.totalDist, total.totalCount);
+  const distanceDist = singleDist(total.distance, total.totalCount);
+  const colleagueDist = singleDist(total.colleague, total.totalCount);
+  const salaryDist = singleDist(total.salary, total.totalCount);
+  const jobDist = singleDist(total.job, total.totalCount);
+  const careerDist = singleDist(total.career, total.totalCount);
+  const totalGraph = totalDistToGraph(total.totalDist, total.totalCount);
   return (
     <ResultView
       percentage={percentage}
