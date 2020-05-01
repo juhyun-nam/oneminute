@@ -45,6 +45,7 @@ function Question({ totalDispatch }) {
       })
       .catch((err) => { window.console.log(err); })
       .then((updated) => {
+        window.console.log(updated);
         totalDispatch(updated);
         base.updateDoc('employ/total', updated)
           .then(() => {

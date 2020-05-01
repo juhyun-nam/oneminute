@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "",
+    "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "start-storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
