@@ -6,6 +6,16 @@ import ResultHeading from '../components/ResultHeading';
 import TotalChart from '../components/TotalChart';
 import ItemChart from '../components/ItemChart';
 
+type ResultviewProps = {
+  percentage: number,
+  totalDist: any,
+  selection: any,
+  distanceDist: any,
+  colleagueDist: any,
+  salaryDist: any,
+  jobDist: any,
+  careerDist: any
+};
 
 export default function ResultView({
   percentage,
@@ -16,8 +26,8 @@ export default function ResultView({
   salaryDist,
   jobDist,
   careerDist,
-}) {
-  const sum = Object.values(selection).reduce((acc, cur) => acc + cur);
+}: ResultviewProps) {
+  const sum = Object.values(selection).reduce((acc: number, cur: number) => acc + cur);
   return (
     <Container>
       <br />
@@ -42,7 +52,7 @@ export default function ResultView({
         {`돈: ${selection.salary}  `}
         {`일: ${selection.job}  `}
         {`커리어: ${selection.career}  `}
-        {')'}
+        )
       </div>
     </Container>
   );

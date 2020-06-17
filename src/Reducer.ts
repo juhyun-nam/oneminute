@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import { SELECT, RESULT } from './Actions';
+import { SELECT, RESULT, ActionType } from './Actions';
 
-function selectionReducer(selection = {}, action) {
+function selectionReducer(selection = {}, action: ActionType) {
   switch (action.type) {
     case SELECT:
       return { ...selection, [action.key]: action.value };
@@ -10,7 +10,7 @@ function selectionReducer(selection = {}, action) {
   }
 }
 
-function totalReducer(total = {}, action) {
+function totalReducer(total = {}, action: ActionType) {
   switch (action.type) {
     case RESULT:
       return action.total;

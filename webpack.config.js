@@ -5,17 +5,19 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, 'src/index.jsx'),
+    index: path.join(__dirname, 'src/index.tsx'),
   },
   output: {
     path: path.join(__dirname, 'dist'),
   },
+  mode: 'production',
+  devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx'],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: './index.html',
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin(),
@@ -23,26 +25,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: 'ts-loader',
         },
       },
-      /*
-      {
-        test: /\.svg$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-            },
-          },
-        ],
-      },
-      */
       {
         test: /\.css$/,
         use: [
@@ -50,6 +38,15 @@ module.exports = {
           'css-loader',
         ],
       },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader',
+      },
     ],
   },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  }
 };

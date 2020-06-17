@@ -5,7 +5,11 @@ import Container from 'react-bootstrap/Container';
 import QuestionHeading from '../components/QuestionHeading';
 import QuestionList from '../containers/QuestionList';
 
-export default function QuestionView({ questionList, submit }) {
+type QuestionViewProps = {
+  questionList: any,
+  submit: any
+};
+export default function QuestionView({ questionList, submit }: QuestionViewProps) {
   return (
     <Container>
       <QuestionHeading />

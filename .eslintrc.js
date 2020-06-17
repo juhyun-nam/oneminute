@@ -1,20 +1,15 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
+  root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json'],
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parser: 'babel-eslint',
   plugins: [
-    'react',
+    '@typescript-eslint',
   ],
-  rules: {
-  },
+  extends: [
+    'airbnb-typescript',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+  ],
 };
