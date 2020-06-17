@@ -3,7 +3,6 @@ import React from 'react';
 import { useStore } from 'react-redux';
 import ResultView from '../screens/ResultView';
 
-
 function Percentage(selections, totalDist, totalCount) {
   const sum = Object.values(selections).reduce((acc, curr) => acc + curr);
   const high = totalDist.reduce((acc, curr, index) => {

@@ -9,7 +9,6 @@ import base from '../rebase';
 import QuestionView from '../screens/QuestionView';
 import Ask from '../components/Ask';
 
-
 function update(sum, sel, total) {
   const career = [...total.career];
   career[sel.career - 1] = total.career[sel.career - 1] + 1;

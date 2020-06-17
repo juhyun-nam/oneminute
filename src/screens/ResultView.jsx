@@ -6,7 +6,6 @@ import ResultHeading from '../components/ResultHeading';
 import TotalChart from '../components/TotalChart';
 import ItemChart from '../components/ItemChart';
 
-
 export default function ResultView({
   percentage,
   totalDist,

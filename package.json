@@ -12,7 +12,8 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "start-storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint --ext .js,.jsx src"
   },
   "dependencies": {
     "@storybook/addon-actions": "^5.3.17",
